@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.overlay {
+    position: relative;
+    width: 100vw;  /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.fullscreen-image {
+    width: 100vw;  /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    object-fit: contain; /* Ensure the image fits within the container without cropping */
+    background-color: black; /* Set background color to black to fill any empty space */
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+    animation: slideInLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Updated animation with bounce effect */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform transition for hover effect */
+}
+
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.1); /* Scale up slightly on hover */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}

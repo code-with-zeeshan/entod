@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entod Pharmaceutical</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Dark mode toggle button -->
+        <button id="darkModeToggle">🌙</button>
+            
+            <div class="header-image">
+                <img id="glotekImage" src="Images/1723848402944-removebg-preview.png" alt="Glotek">
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button id="searchButton">🔍</button>
+
+            </div>
+        
+        <div class="content">
+            <nav class="sidebar">
+                <ul>
+                    <li data-category="Surgical Range">Surgical Range</li>
+                    <li data-category="Anti-Glaucoma">Anti-Glaucoma</li>
+                    <li data-category="Dry Eye Range ">Dry Eye Range </li>
+                    <li data-category="Other Range">Other Range</li>
+                </ul>
+            </nav>
+            <div class="gallery">
+        
+                <h2 id="gallery-title">Select a Glotek Category</h2>
+                <div class="medicine-list" id="medicine-gallery"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="details-container" class="details-container hidden">
+        <button class="back-button">← Back</button>
+        <h1 id="medicine-name">Medicine Name</h1>
+        <div class="details">
+            <img id="medicine-image" src="https://via.placeholder.com/200" alt="Medicine Image">
+            <div class="details-text">
+                <h2>Description</h2>
+                <p id="medicine-description">Medicine description goes here.</p>
+
+                <h2>Dosage</h2>
+                <p id="medicine-dosage">Dosage information goes here.</p>
+
+                <h2>Side Effects</h2>
+                <p id="medicine-side-effects">Side effects information goes here.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2024 Entod Pharmaceutical Pvt. Ltd. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

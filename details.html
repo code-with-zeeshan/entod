@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Details</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="overlay" id="overlay">
+        <button class="back-button" onclick="goBack()">← Back</button>
+        <img src="" alt="Medicine Image" class="fullscreen-image" id="fullscreenImage">
+        <h2 id="medicineName">Medicine Name</h2>
+        <p id="medicineDescription">No description available.</p>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Get the relevant elements
+        const fullscreenImage = document.getElementById('fullscreenImage');
+        const medicineName = document.getElementById('medicineName');
+        const medicineDescription = document.getElementById('medicineDescription');
+
+        // Retrieve the query parameters
+        const imageSrc = getQueryParam('image');  // This is now the 'detailImage' passed from the gallery
+        const name = getQueryParam('name');
+        const description = getQueryParam('description');
+
+        // Populate the details page with the data from the URL parameters
+        if (imageSrc) fullscreenImage.src = decodeURIComponent(imageSrc);
+        if (name) medicineName.textContent = decodeURIComponent(name);
+        if (description) medicineDescription.textContent = decodeURIComponent(description) || 'No description available.';
+
+        // Show the overlay
+        document.getElementById('overlay').style.display = 'block';
+    </script>
+</body>
+</html>

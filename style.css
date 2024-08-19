@@ -1,0 +1,388 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for dark mode */
+}
+
+.header-image img {
+    max-width: 30%;
+    height: auto;
+    display: block;
+    transition: border 0.3s, box-shadow 0.3s; /* Smooth transition for dark mode effects */
+}
+
+.container { 
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+}
+
+/* Search Bar Styles */
+.search-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.search-container input[type="text"] {
+    width: 0;
+    opacity: 0;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: width 0.3s ease, opacity 0.4s ease, border-color 0.3s;
+}
+
+.search-container input[type="text"].active {
+    width: calc(100% - 40px); /* Expand width to fit container */
+    opacity: 1; /* Fade in */
+}
+
+.search-container button {
+    background-color: #1abc9c;
+    
+    border-radius: 50%;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #16a085;
+}
+
+.search-container button:focus {
+    outline: none;
+}
+
+/* Headers and Text */
+h1 {
+    color: #2c3e50;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+/* Two-column Layout */
+.content {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #34495e;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #2c3e50;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar li:hover {
+    background-color: #1abc9c;
+}
+
+.sidebar li.active {
+    background-color: #1abc9c;
+}
+
+.gallery {
+    flex: 1; /* Allows the gallery to grow or shrink based on available space */
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 500px; /* Adjust this value as needed */
+    overflow-y: auto; /* Add scrollbar if content exceeds max-height */
+    margin-bottom: 60px; /* Ensure space for footer */
+}
+
+#gallery-title {
+    font-size: 28px;
+    color: #34495e;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* Medicine List Styles */
+.medicine-list {
+    display: flex;
+    
+    padding: 15px;
+    scroll-behavior: smooth;
+    gap: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #ddd;
+}
+
+.medicine-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.medicine-list::-webkit-scrollbar-track {
+    background: #ddd;
+}
+
+.medicine-list::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.medicine-item {
+    flex: 0 0 auto;
+    background-color: #fff;
+    border-radius: 15px;
+    margin: 0;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateX(100px);
+    border: 1px solid #e0e0e0;
+}
+
+.medicine-item img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.medicine-item:hover {
+    transform: translateY(-10px);
+    background-color: #f0f8ff;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.medicine-item:hover img {
+    transform: scale(1.1);
+}
+
+.medicine-item h2 {
+    font-size: 20px;
+    margin: 10px 0 5px;
+    color: #2c3e50;
+}
+
+.medicine-item p {
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+/* Animation */
+.medicine-item.in-view {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Details Page Styles */
+.details-container {
+    display: none;
+    position: relative;
+    padding: 20px;
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.details-container.visible {
+    display: block;
+}
+
+.details img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.details-text {
+    display: none;
+}
+
+.back-button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #16a085;
+}
+
+/* Responsive Styles */
+
+/* Tablets and Smaller Screens */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 30%;
+    }
+
+    .gallery {
+        width: 65%;
+    }
+
+    .medicine-item {
+        width: 150px;
+    }
+
+    .medicine-item img {
+        width: 80px;
+        height: 80px;
+    }
+
+    #gallery-title {
+        font-size: 24px;
+    }
+}
+
+/* Mobile Screens */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 40%;
+    }
+
+    .gallery {
+        width: 55%;
+    }
+
+    .medicine-item {
+        width: 120px;
+    }
+
+    .medicine-item img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .back-button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode .header-image img {
+    border: none;
+    
+}
+
+.dark-mode .sidebar {
+    background-color: #1e1e1e;
+}
+
+.dark-mode .sidebar li {
+    background-color: #333; /* Slightly lighter background for sidebar items */
+    color: #e0e0e0; /* Light text color */
+}
+
+.dark-mode .gallery {
+    background-color: #2c2c2c; /* Dark background for gallery */
+    color: #e0e0e0; /* Light text color */
+}
+
+.dark-mode #gallery-title {
+    color: #ffffff; /* Dark mode title color */
+}
+
+.dark-mode .gallery .medicine-item {
+    background-color: #1e1e1e; /* Dark background for medicine items */
+    border: 1px solid #333; /* Dark border for items */
+    color: #e0e0e0; /* Light text color */
+}
+
+.dark-mode .gallery .medicine-item h2 {
+    color: #ffffff; /* White text for medicine names */
+}
+
+.dark-mode .gallery .medicine-item p {
+    color: #b0b0b0; /* Lighter gray text for descriptions */
+}
+.dark-mode .search-container input[type="text"] {
+    border: 2px solid #555;
+    background-color: #333; /* Ensure input background is dark */
+    color: #ddd; /* Light text for input */
+}
+
+.dark-mode .search-container button {
+    background-color: #444;
+}
+
+.dark-mode .search-container button:hover {
+    background-color: #555;
+}
+/* Footer Styles */
+.footer {
+    background-color: #34495e; /* Dark background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Center the text */
+    padding: 10px; /* Add some padding */
+    position: fixed; /* Fix the footer to the bottom of the page */
+    bottom: 0; /* Align it to the bottom */
+    width: 100%; /* Full width */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+/* Adjustments for Dark Mode */
+.dark-mode .footer {
+    background-color: #1e1e1e; /* Darker background for dark mode */
+    color: #e0e0e0; /* Light text color for dark mode */
+}
+/* Dark Mode Styles for Sidebar Items */
+.dark-mode .sidebar li:hover {
+    background-color: #1abc9c; /* Or any other color you want for hover in dark mode */
+}
+.dark-mode .sidebar li.active {
+    background-color: #1abc9c;
+}

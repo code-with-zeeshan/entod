@@ -1,0 +1,81 @@
+/* Dark Mode Styles */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.search-container input[type="text"] {
+    background-color: #444;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+.search-container button {
+    background-color: #444;
+}
+
+.sidebar {
+    background-color: #1e1e1e;
+}
+
+.sidebar li {
+    background-color: #2c2c2c;
+}
+
+.gallery {
+    background-color: #1e1e1e;
+}
+
+.medicine-item {
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+}
+
+.medicine-item:hover {
+    background-color: #333;
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+}
+
+.details-container {
+    background-color: #121212;
+}
+
+/* Add more dark mode styles as needed */
+/* General button styles */
+button {
+    background-color: #f0f0f0; /* Light background for light mode */
+    color: #333; /* Dark text for light mode */
+    border: 1px solid #ccc; /* Light border for light mode */
+}
+
+/* Dark Mode Styles */
+.dark-mode button {
+    background-color: #333; /* Dark background for dark mode */
+    color: #fff; /* Light text for dark mode */
+    border: 1px solid #555; /* Darker border for dark mode */
+}
+
+/* Search button specific styles */
+.search-container button {
+    background-color: #444; /* Darker background for the search button */
+    color: #fff; /* Light text color */
+    border: 1px solid #666; /* Border matching dark mode */
+}
+
+.dark-mode .search-container button {
+    background-color: #555; /* Slightly lighter for contrast */
+    border: 1px solid #777; /* Lighter border in dark mode */
+}
+
+/* Ensure input fields also adapt to dark mode */
+.search-container input[type="text"] {
+    background-color: #222; /* Dark background for input */
+    color: #ddd; /* Light text color for input */
+    border: 1px solid #444; /* Border color for input in dark mode */
+}
+
+.dark-mode .search-container input[type="text"] {
+    background-color: #333; /* Adjusted dark input background */
+    border: 1px solid #555; /* Adjusted border in dark mode */
+}
+
