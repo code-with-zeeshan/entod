@@ -18,12 +18,12 @@
     <script>
         function goBack() {
             window.history.back();
-        }
+        };
 
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
-        }
+        };
 
         // Get the relevant elements
         const fullscreenImage = document.getElementById('fullscreenImage');

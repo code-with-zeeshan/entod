@@ -1,0 +1,16 @@
+{
+    "name": "Entod Pharmaceutical",
+    "short_name": "Entod Pharma",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#1abc9c",
+    "icons": [
+      {
+        "src": "Images/1724181172258.jpg",
+        "sizes": "192x192",
+        "type": "image/jpg"
+      }
+    ]
+  }
+  

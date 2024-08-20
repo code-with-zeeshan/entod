@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const glotekImage = document.getElementById('glotekImage');
     let currentCategory = '';
 
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+        // Hide the status bar
+        window.AndroidFullScreen.immersiveMode();
+    }
+
    // Dark mode toggle
    const darkModeStylesheet = 'style-dark.css';
    const darkModeImageSrc = 'Images/my-image.png'; // Path to the dark mode image
@@ -52,6 +57,15 @@ darkModeToggle.addEventListener('click', function() {
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
 });
 
+ // Search Bar Toggle
+ searchButton.addEventListener('click', function() {
+    searchInput.classList.toggle('active');
+    searchInput.focus();
+});
+
+searchInput.addEventListener('blur', function() {
+    searchInput.classList.remove('active');
+});
 
 
     const medicines = {
@@ -105,11 +119,7 @@ darkModeToggle.addEventListener('click', function() {
         ]
         };
 
-   // Define performSearch function in the global scope
-function performSearch() {
-    const query = searchInput.value;
-    renderMedicines(currentCategory, query);
-}
+   
 function renderMedicines(category, filterQuery = '') {
     const categoryMedicines = medicines[category];
 if (!categoryMedicines) return; // Check if the category exists
@@ -140,16 +150,7 @@ if (!categoryMedicines) return; // Check if the category exists
     });
 }
     
-    // Search Bar Toggle
-    searchButton.addEventListener('click', function() {
-        searchInput.classList.toggle('active');
-        searchInput.focus();
-    });
-    
-    searchInput.addEventListener('blur', function() {
-        searchInput.classList.remove('active');
-    });
-    
+   
 
     document.querySelectorAll('.sidebar li').forEach(li => {
         li.addEventListener('click', function () {
@@ -169,12 +170,18 @@ if (!categoryMedicines) return; // Check if the category exists
     
 
      // Attach the search function to the input event
-    searchInput.addEventListener('input', performSearch);
-});
+    searchInput.addEventListener('input',  performSearch); 
 
-document.addEventListener("DOMContentLoaded", function() {
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-        // Hide the status bar
-        window.AndroidFullScreen.immersiveMode();
-    }
+    // Check if service workers are supported
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // Register the service worker
+      navigator.serviceWorker.register('/service-worker.js').then(registration => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }).catch(error => {
+        console.error('ServiceWorker registration failed: ', error);
+      });
+    });
+  }
+  
 });
