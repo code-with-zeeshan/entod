@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initialize dark mode based on user preference (if any)
   if (localStorage.getItem('darkMode') === 'true') {
     toggleDarkMode();
+
+   
 }
 
 darkModeToggle.addEventListener('click', function() {
@@ -168,4 +170,11 @@ if (!categoryMedicines) return; // Check if the category exists
 
      // Attach the search function to the input event
     searchInput.addEventListener('input', performSearch);
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+        // Hide the status bar
+        window.AndroidFullScreen.immersiveMode();
+    }
 });

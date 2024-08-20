@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Medicine Details</title>
     <link rel="stylesheet" href="style1.css">
 </head>
@@ -41,6 +42,13 @@
 
         // Show the overlay
         document.getElementById('overlay').style.display = 'block';
+
+        document.addEventListener("DOMContentLoaded", function() {
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+        // Hide the status bar
+        window.AndroidFullScreen.immersiveMode();
+    }
+});
     </script>
 </body>
 </html>
