@@ -285,11 +285,18 @@ h1 {
 /* Mobile Screens */
 @media (max-width: 480px) {
     .sidebar {
-        width: 40%;
+        width: 100%; /* Sidebar takes full width in mobile view */
+        margin-bottom: 20px; /* Add space below the sidebar */
     }
 
     .gallery {
-        width: 55%;
+        width: 100%; /* Gallery takes full width in mobile view */
+        margin-bottom: 0; /* Remove bottom margin */
+    }
+
+    .content {
+        flex-direction: column; /* Change layout to vertical (two rows) */
+        align-items: center; /* Center align items */
     }
 
     .medicine-item {
@@ -306,6 +313,7 @@ h1 {
         font-size: 14px;
     }
 }
+
 
 /* Dark Mode Styles */
 .dark-mode {
