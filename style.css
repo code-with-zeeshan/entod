@@ -258,18 +258,25 @@ h1 {
 
 /* Responsive Styles */
 
-/* Tablets and Smaller Screens */
+/* Tablet Screens */
 @media (max-width: 768px) {
     .sidebar {
-        width: 30%;
+        width: 100%; /* Sidebar takes full width in tablet view */
+        margin-bottom: 20px; /* Add space below the sidebar */
     }
 
     .gallery {
-        width: 65%;
+        width: 100%; /* Gallery takes full width in tablet view */
+        margin-bottom: 0; /* Remove bottom margin */
+    }
+
+    .content {
+        flex-direction: column; /* Change layout to vertical (two rows) */
+        align-items: center; /* Center align items */
     }
 
     .medicine-item {
-        width: 150px;
+        width: 150px; /* Slightly larger medicine items for tablet view */
     }
 
     .medicine-item img {
@@ -277,10 +284,28 @@ h1 {
         height: 80px;
     }
 
-    #gallery-title {
-        font-size: 24px;
+    .back-button {
+        padding: 10px 15px; /* Adjust padding for tablet */
+        font-size: 16px;
+    }
+
+    /* Adjust the search container position */
+    .search-container {
+        top: 15px; /* Adjust top spacing for tablet */
+        right: 15px; /* Ensure it doesn't overlap with other elements */
+    }
+
+    /* Add padding to the container to create space on all sides */
+    .container {
+        padding: 30px; /* Add padding around the container for tablet view */
+    }
+    
+    /* Adjust dark mode button */
+    .dark-mode-button {
+        margin-top: 20px; /* Ensure there's space between the search bar and the dark mode button */
     }
 }
+
 
 /* Mobile Screens */
 @media (max-width: 480px) {
@@ -312,7 +337,24 @@ h1 {
         padding: 8px 12px;
         font-size: 14px;
     }
+
+    /* Adjust the search container position */
+    .search-container {
+        top: 10px; /* Reduce top spacing */
+        right: 10px; /* Ensure it doesn't overlap with other elements */
+    }
+
+    /* Add padding to the container to create space on all sides */
+    .container {
+        padding: 20px; /* Add padding around the container */
+    }
+    
+    /* Adjust dark mode button */
+    .dark-mode-button {
+        margin-top: 20px; /* Ensure there's space between the search bar and the dark mode button */
+    }
 }
+
 
 
 /* Dark Mode Styles */
