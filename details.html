@@ -45,10 +45,16 @@
 
         document.addEventListener("DOMContentLoaded", function() {
     if (window.matchMedia('(display-mode: standalone)').matches) {
-        // Hide the status bar
-        window.AndroidFullScreen.immersiveMode();
+        // Check if the AndroidFullScreen object exists
+        if (window.AndroidFullScreen && typeof window.AndroidFullScreen.immersiveMode === 'function') {
+            // Hide the status bar
+            window.AndroidFullScreen.immersiveMode();
+        } else {
+            console.warn('AndroidFullScreen or immersiveMode is not available.');
+        }
     }
 });
+
     </script>
 </body>
 </html>

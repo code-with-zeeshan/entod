@@ -9,7 +9,7 @@ const urlsToCache = [
   '/style-dark.css',
   '/style1.css',
   '/Images',
-  'Images/1724181172258.jpg',
+  'Images/1724181172258.png',
 ];
 
 self.addEventListener('install', (event) => {

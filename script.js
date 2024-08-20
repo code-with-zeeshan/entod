@@ -150,7 +150,6 @@ if (!categoryMedicines) return; // Check if the category exists
     });
 }
     
-   
 
     document.querySelectorAll('.sidebar li').forEach(li => {
         li.addEventListener('click', function () {
@@ -167,6 +166,11 @@ if (!categoryMedicines) return; // Check if the category exists
         detailsContainer.classList.add('hidden');
         document.querySelector('.content').style.display = 'flex';
     });
+    
+    function performSearch() {
+        const query = searchInput.value;
+        renderMedicines(currentCategory, query);
+    }
     
 
      // Attach the search function to the input event
