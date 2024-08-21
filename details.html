@@ -44,16 +44,24 @@
         document.getElementById('overlay').style.display = 'block';
 
         document.addEventListener("DOMContentLoaded", function() {
+    console.log('Checking for standalone display mode and AndroidFullScreen...');
     if (window.matchMedia('(display-mode: standalone)').matches) {
-        // Check if the AndroidFullScreen object exists
+        console.log('Standalone mode detected.');
         if (window.AndroidFullScreen && typeof window.AndroidFullScreen.immersiveMode === 'function') {
-            // Hide the status bar
-            window.AndroidFullScreen.immersiveMode();
+            console.log('Calling immersiveMode...');
+
+            try {
+                // Hide the status bar
+                window.AndroidFullScreen.immersiveMode();
+            } catch (error) {
+                console.error('Error calling immersiveMode:', error);
+            }
         } else {
             console.warn('AndroidFullScreen or immersiveMode is not available.');
         }
     }
 });
+
 
     </script>
 </body>

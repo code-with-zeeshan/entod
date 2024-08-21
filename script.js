@@ -9,10 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const glotekImage = document.getElementById('glotekImage');
     let currentCategory = '';
 
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-        // Hide the status bar
-        window.AndroidFullScreen.immersiveMode();
-    }
+    
 
    // Dark mode toggle
    const darkModeStylesheet = 'style-dark.css';
