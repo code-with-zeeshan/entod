@@ -184,5 +184,16 @@ if ('serviceWorker' in navigator) {
       });
     });
   }
-  
+  // Check if we are in standalone mode and try to enter immersive mode
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    if (window.AndroidFullScreen && typeof window.AndroidFullScreen.immersiveMode === 'function') {
+        console.log('Standalone mode detected.');
+        window.AndroidFullScreen.immersiveMode(
+            () => console.log('Entered immersive mode successfully'),
+            (error) => console.error('Failed to enter immersive mode', error)
+        );
+    } else {
+        console.warn('AndroidFullScreen API not available or immersiveMode function is undefined.');
+    }
+}
 });

@@ -6,6 +6,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Medicine Details</title>
     <link rel="stylesheet" href="style1.css">
+    <!-- Include AndroidFullScreen library -->
+    <script src="/AndroidFullScreen.js"></script> <!-- Replace with actual path -->
 </head>
 <body>
     <div class="overlay" id="overlay">
@@ -43,26 +45,23 @@
         // Show the overlay
         document.getElementById('overlay').style.display = 'block';
 
-        document.addEventListener("DOMContentLoaded", function() {
-    console.log('Checking for standalone display mode and AndroidFullScreen...');
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-        console.log('Standalone mode detected.');
-        if (window.AndroidFullScreen && typeof window.AndroidFullScreen.immersiveMode === 'function') {
-            console.log('Calling immersiveMode...');
-
-            try {
-                // Hide the status bar
-                window.AndroidFullScreen.immersiveMode();
-            } catch (error) {
-                console.error('Error calling immersiveMode:', error);
-            }
+      // Check if AndroidFullScreen is defined and available
+      if (typeof window.AndroidFullScreen !== 'undefined') {
+            console.log('AndroidFullScreen detected.');
+            document.addEventListener("DOMContentLoaded", function() {
+                console.log('Checking for standalone display mode and AndroidFullScreen...');
+                if (window.matchMedia('(display-mode: standalone)').matches) {
+                    console.log('Standalone mode detected.');
+                    window.AndroidFullScreen.immersiveMode(
+                        function() { console.log('Entered immersive mode'); },
+                        function(error) { console.error('Failed to enter immersive mode:', error); }
+                    );
+                }
+            });
         } else {
-            console.warn('AndroidFullScreen or immersiveMode is not available.');
+            console.log('AndroidFullScreen is not available.');
         }
-    }
-});
 
-
-    </script>
+</script>
 </body>
 </html>
