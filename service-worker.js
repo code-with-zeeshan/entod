@@ -9,7 +9,10 @@ const urlsToCache = [
   '/style-dark.css',
   '/style1.css',
   '/Images',
-  'Images/1724181172258.png',
+  '/icons/5665b910-cc0e-4e46-a20e-8f515b9bc30b-2.png',
+  '/icons/apple-touch-icon.png',
+  '/icons/android-chrome-192x192.png',
+  '/icons/android-chrome-512x512.png'
 ];
 
 self.addEventListener('install', (event) => {
