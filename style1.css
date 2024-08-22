@@ -25,7 +25,9 @@ body, html {
     height: 100vh; /* Full height of the viewport */
     object-fit: contain; /* Ensure the image fits within the container without cropping */
     background-color: black; /* Set background color to black to fill any empty space */
+    filter: brightness(0.8);
 }
+
 
 .back-button {
     position: absolute;
@@ -62,4 +64,13 @@ body, html {
     to {
         transform: translateX(0);
     }
+}
+@media (max-width: 768px) {
+    .back-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    
 }

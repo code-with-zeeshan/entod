@@ -49,16 +49,24 @@ document.addEventListener('DOMContentLoaded', function () {
    
 }
 
-darkModeToggle.addEventListener('click', function() {
+// Toggle dark mode on click or touch
+function toggleDarkModeHandler() {
     toggleDarkMode();
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-});
+}
+    darkModeToggle.addEventListener('click', toggleDarkModeHandler);
+    darkModeToggle.addEventListener('touchstart', toggleDarkModeHandler);
 
  // Search Bar Toggle
- searchButton.addEventListener('click', function() {
+ function toggleSearchBar() {
     searchInput.classList.toggle('active');
-    searchInput.focus();
-});
+    if (searchInput.classList.contains('active')) {
+        searchInput.focus();
+    }
+}
+    
+    searchButton.addEventListener('click', toggleSearchBar);
+    searchButton.addEventListener('touchstart', toggleSearchBar);
 
 searchInput.addEventListener('blur', function() {
     searchInput.classList.remove('active');
@@ -148,22 +156,29 @@ if (!categoryMedicines) return; // Check if the category exists
 }
     
 
-    document.querySelectorAll('.sidebar li').forEach(li => {
-        li.addEventListener('click', function () {
-            document.querySelector('.sidebar li.active')?.classList.remove('active');
-            this.classList.add('active');
-            currentCategory = this.getAttribute('data-category');
-            renderMedicines(currentCategory); // Render medicines for the selected category
-        });
-    });
+   // Category selection with click and touch
+   function categorySelectionHandler(event) {
+    document.querySelector('.sidebar li.active')?.classList.remove('active');
+    event.currentTarget.classList.add('active');
+    currentCategory = event.currentTarget.getAttribute('data-category');
+    renderMedicines(currentCategory); // Render medicines for the selected category
+}
 
-    backButton.addEventListener('click', function() {
-        // Hide the details container and show the gallery
-        detailsContainer.classList.remove('visible');
-        detailsContainer.classList.add('hidden');
-        document.querySelector('.content').style.display = 'flex';
-    });
+document.querySelectorAll('.sidebar li').forEach(li => {
+    li.addEventListener('click', categorySelectionHandler);
+    li.addEventListener('touchstart', categorySelectionHandler);
+});
+
+   // Back button to return to main content
+   function backToGallery() {
+    detailsContainer.classList.remove('visible');
+    document.querySelector('.content').style.display = 'flex';
+}
+
+backButton.addEventListener('click', backToGallery);
+backButton.addEventListener('touchstart', backToGallery);
     
+    // Perform search
     function performSearch() {
         const query = searchInput.value;
         renderMedicines(currentCategory, query);
