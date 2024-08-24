@@ -9,7 +9,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const glotekImage = document.getElementById('glotekImage');
     let currentCategory = '';
 
+     // Search Bar Toggle
+ function toggleSearchBar() {
+    searchInput.classList.toggle('active');
+    if (searchInput.classList.contains('active')) {
+        searchInput.focus();
+    }
+}
     
+    searchButton.addEventListener('click', toggleSearchBar);
+    searchButton.addEventListener('touchstart', toggleSearchBar);
+
+searchInput.addEventListener('blur', function() {
+    searchInput.classList.remove('active');
+});
 
    // Dark mode toggle
    const darkModeStylesheet = 'style-dark.css';
@@ -25,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
            unloadCSS(darkModeStylesheet);
            glotekImage.src = lightModeImageSrc;
        }
+       
    }
 
    function loadCSS(href) {
@@ -41,10 +55,13 @@ document.addEventListener('DOMContentLoaded', function () {
            document.head.removeChild(existingLink);
        }
    }
+    
 
   // Initialize dark mode based on user preference (if any)
   if (localStorage.getItem('darkMode') === 'true') {
-    toggleDarkMode();
+    document.body.classList.toggle('dark-mode');
+    loadCSS(darkModeStylesheet);
+    glotekImage.src = darkModeImageSrc;
 
    
 }
@@ -57,19 +74,17 @@ function toggleDarkModeHandler() {
     darkModeToggle.addEventListener('click', toggleDarkModeHandler);
     darkModeToggle.addEventListener('touchstart', toggleDarkModeHandler);
 
- // Search Bar Toggle
- function toggleSearchBar() {
-    searchInput.classList.toggle('active');
-    if (searchInput.classList.contains('active')) {
-        searchInput.focus();
-    }
-}
-    
-    searchButton.addEventListener('click', toggleSearchBar);
-    searchButton.addEventListener('touchstart', toggleSearchBar);
 
-searchInput.addEventListener('blur', function() {
-    searchInput.classList.remove('active');
+// Shrink gallery title on scroll
+window.addEventListener('scroll', function() {
+    const galleryTitle = document.getElementById('gallery-title');
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+    if (scrollPosition > 50) { // Adjust this value based on when you want the title to shrink
+        galleryTitle.classList.add('shrink');
+    } else {
+        galleryTitle.classList.remove('shrink');
+    }
 });
 
 
@@ -135,6 +150,15 @@ if (!categoryMedicines) return; // Check if the category exists
     const filteredMedicines = medicines[category].filter(medicine =>
         medicine.name.toLowerCase().includes(filterQuery.toLowerCase())
     );
+    // If no medicines match the filter, display a message
+    if (filteredMedicines.length === 0) {
+        const noResultsMessage = document.createElement('p');
+        noResultsMessage.textContent = 'No medicines available in this category or matching your search query.';
+        noResultsMessage.style.textAlign = 'center';
+        noResultsMessage.style.color = '#7f8c8d';
+        medicineGallery.appendChild(noResultsMessage);
+        return;
+    }
 
     filteredMedicines.forEach(medicine => {
         const item = document.createElement('div');
@@ -210,5 +234,6 @@ if ('serviceWorker' in navigator) {
     } else {
         console.warn('AndroidFullScreen API not available or immersiveMode function is undefined.');
     }
-}
+  }
+
 });

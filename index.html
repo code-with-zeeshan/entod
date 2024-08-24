@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Entod Pharmaceutical</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -12,8 +12,10 @@
     <link rel="android-chrome-512x512" sizes="512x512" href="/icons/android-chrome-512x512.png">
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media-queries.css">
 </head>
 <body>
+    <div class="page-wrapper">
     <div class="container">
         <!-- Dark mode toggle button -->
         <button id="darkModeToggle">🌙</button>
@@ -38,9 +40,13 @@
                 </ul>
             </nav>
             <div class="gallery">
-        
+                <div class="fixed-section">
                 <h2 id="gallery-title">Select a Glotek Category</h2>
-                <div class="medicine-list" id="medicine-gallery"></div>
+            </div>
+            <div class="scrollable-section">
+                <div class="medicine-list" id="medicine-gallery">
+
+                </div>
             </div>
         </div>
     </div>
@@ -53,12 +59,12 @@
            
         </div>
     </div>
-
+</div>
     <!-- Footer Section -->
     <footer class="footer">
         <p>&copy; 2024 Entod Pharmaceutical Pvt. Ltd. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
