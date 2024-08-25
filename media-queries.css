@@ -126,6 +126,17 @@
 
     }
 
+    #gallery-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #34495e;
+        text-align: left;
+        /*margin-bottom: 10px;*/
+         
+    }
+
+   
+
     .container {
         padding: 0 5px;
     }

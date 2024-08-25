@@ -81,7 +81,7 @@
 .dark-mode button {
     background-color: #333; /* Dark background for dark mode */
     color: #fff; /* Light text for dark mode */
-    border: 1px solid #555; /* Darker border for dark mode */
+    border: 2px solid #fff; /* Darker border for dark mode */
 }
 
 /* Search button specific styles */
