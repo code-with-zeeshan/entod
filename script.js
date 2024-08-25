@@ -239,13 +239,12 @@ if ('serviceWorker' in navigator) {
 });
 document.addEventListener('focusin', (event) => {
     if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
-        document.querySelector('.footer').style.position = 'absolute';
-        document.querySelector('.footer').style.bottom = 'auto';
+        document.querySelector('.footer').style.display = 'none';
     }
 });
 
 document.addEventListener('focusout', () => {
-    document.querySelector('.footer').style.position = 'fixed';
-    document.querySelector('.footer').style.bottom = '0';
+    document.querySelector('.footer').style.display = 'block';
 });
+
 
