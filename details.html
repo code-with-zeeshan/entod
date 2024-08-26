@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Medicine Details</title>
+    <title>Entod Pharmaceutical</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style1.css">
     <!-- Include AndroidFullScreen library -->
     <script src="/AndroidFullScreen.js"></script> <!-- Replace with actual path -->
@@ -16,48 +17,6 @@
         
     </div>
 
-    <script>
-        function goBack() {
-            window.history.back();
-        };
-
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        };
-
-        // Get the relevant elements
-        const fullscreenImage = document.getElementById('fullscreenImage');
-       
-
-        // Retrieve the query parameters
-        const imageSrc = getQueryParam('image');  // This is now the 'detailImage' passed from the gallery
-       
-
-        // Populate the details page with the data from the URL parameters
-        if (imageSrc) fullscreenImage.src = decodeURIComponent(imageSrc);
-        
-
-        // Show the overlay
-        document.getElementById('overlay').style.display = 'block';
-
-      // Check if AndroidFullScreen is defined and available
-      if (typeof window.AndroidFullScreen !== 'undefined') {
-            console.log('AndroidFullScreen detected.');
-            document.addEventListener("DOMContentLoaded", function() {
-                console.log('Checking for standalone display mode and AndroidFullScreen...');
-                if (window.matchMedia('(display-mode: standalone)').matches) {
-                    console.log('Standalone mode detected.');
-                    window.AndroidFullScreen.immersiveMode(
-                        function() { console.log('Entered immersive mode'); },
-                        function(error) { console.error('Failed to enter immersive mode:', error); }
-                    );
-                }
-            });
-        } else {
-            console.log('AndroidFullScreen is not available.');
-        }
-
-</script>
+    <script type="text/javascript" src="script1.js"></script>
 </body>
 </html>

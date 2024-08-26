@@ -8,21 +8,46 @@ document.addEventListener('DOMContentLoaded', function () {
     const darkModeToggle = document.getElementById('darkModeToggle');
     const glotekImage = document.getElementById('glotekImage');
     let currentCategory = '';
-
+    let ignoreBlur = false;
+    
      // Search Bar Toggle
- function toggleSearchBar() {
-    searchInput.classList.toggle('active');
-    if (searchInput.classList.contains('active')) {
-        searchInput.focus();
+  function toggleSearchBar() {
+        if (!searchInput.classList.contains('active')) {
+            searchInput.classList.add('active');
+            searchInput.focus();
+        }
     }
-}
     
     searchButton.addEventListener('click', toggleSearchBar);
     searchButton.addEventListener('touchstart', toggleSearchBar);
 
-searchInput.addEventListener('blur', function() {
-    searchInput.classList.remove('active');
-});
+    searchInput.addEventListener('focus', function () {
+        ignoreBlur = true;
+    });
+
+    
+
+    searchInput.addEventListener('blur', function () {
+        if (ignoreBlur) {
+            setTimeout(() => {
+                searchInput.classList.remove('active');
+            }, 200);
+            ignoreBlur = false;
+        }
+    });
+
+    // Collapse search bar if click is detected outside
+    document.addEventListener('click', function (event) {
+        if (!searchInput.contains(event.target) && !searchButton.contains(event.target)) {
+            searchInput.classList.remove('active');
+        }
+    });
+
+    document.addEventListener('touchstart', function (event) {
+        if (!searchInput.contains(event.target) && !searchButton.contains(event.target)) {
+            searchInput.classList.remove('active');
+        }
+    });
 
    // Dark mode toggle
    const darkModeStylesheet = 'style-dark.css';
@@ -30,40 +55,40 @@ searchInput.addEventListener('blur', function() {
    const lightModeImageSrc = 'Images/1723848402944-removebg-preview.png'; // Path to the light mode image
 
    function toggleDarkMode() {
-       const isDarkMode = document.body.classList.toggle('dark-mode');
-       if (isDarkMode) {
-           loadCSS(darkModeStylesheet);
-           glotekImage.src = darkModeImageSrc;
-       } else {
-           unloadCSS(darkModeStylesheet);
-           glotekImage.src = lightModeImageSrc;
-       }
-       
-   }
+    const isDarkMode = document.body.classList.toggle('dark-mode');
+    if (isDarkMode) {
+        loadCSS(darkModeStylesheet);
+        glotekImage.src = darkModeImageSrc;
+    } else {
+        unloadCSS();
+        glotekImage.src = lightModeImageSrc;
+    }
+}
 
-   function loadCSS(href) {
-       const link = document.createElement('link');
-       link.rel = 'stylesheet';
-       link.href = href;
-       link.id = 'darkModeStylesheet';
-       document.head.appendChild(link);
-   }
+function loadCSS(href) {
+    let link = document.getElementById('darkModeStylesheet');
+    if (!link) {
+        link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        link.id = 'darkModeStylesheet';
+        document.head.appendChild(link);
+    }
+}
 
-   function unloadCSS(href) {
-       const existingLink = document.getElementById('darkModeStylesheet');
-       if (existingLink) {
-           document.head.removeChild(existingLink);
-       }
-   }
-    
+function unloadCSS() {
+    const existingLink = document.getElementById('darkModeStylesheet');
+    if (existingLink) {
+        document.head.removeChild(existingLink);
+    }
+}
+
 
   // Initialize dark mode based on user preference (if any)
   if (localStorage.getItem('darkMode') === 'true') {
-    document.body.classList.toggle('dark-mode');
+    document.body.classList.add('dark-mode');
     loadCSS(darkModeStylesheet);
     glotekImage.src = darkModeImageSrc;
-
-   
 }
 
 // Toggle dark mode on click or touch
@@ -71,13 +96,13 @@ function toggleDarkModeHandler() {
     toggleDarkMode();
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
 }
-    darkModeToggle.addEventListener('click', toggleDarkModeHandler);
-    darkModeToggle.addEventListener('touchstart', toggleDarkModeHandler);
+
+darkModeToggle.addEventListener('click', toggleDarkModeHandler);
+darkModeToggle.addEventListener('touchstart', toggleDarkModeHandler);
 
 
 // Shrink gallery title on scroll
 window.addEventListener('scroll', function() {
-    const galleryTitle = document.getElementById('gallery-title');
     const scrollPosition = window.scrollY || document.documentElement.scrollTop;
 
     if (scrollPosition > 50) { // Adjust this value based on when you want the title to shrink
@@ -148,8 +173,10 @@ if (!categoryMedicines) return; // Check if the category exists
     galleryTitle.textContent = category.replace('-', ' ').replace(/(^|\s)\S/g, l => l.toUpperCase());
 
     const filteredMedicines = medicines[category].filter(medicine =>
-        medicine.name.toLowerCase().includes(filterQuery.toLowerCase())
-    );
+     medicine.name.toLowerCase().includes(filterQuery.toLowerCase())
+);
+
+
     // If no medicines match the filter, display a message
     if (filteredMedicines.length === 0) {
         const noResultsMessage = document.createElement('p');
@@ -193,6 +220,7 @@ document.querySelectorAll('.sidebar li').forEach(li => {
     li.addEventListener('touchstart', categorySelectionHandler);
 });
 
+
    // Back button to return to main content
    function backToGallery() {
     detailsContainer.classList.remove('visible');
@@ -201,6 +229,8 @@ document.querySelectorAll('.sidebar li').forEach(li => {
 
 backButton.addEventListener('click', backToGallery);
 backButton.addEventListener('touchstart', backToGallery);
+
+
     
     // Perform search
     function performSearch() {
@@ -236,15 +266,32 @@ if ('serviceWorker' in navigator) {
     }
   }
 
-});
-document.addEventListener('focusin', (event) => {
-    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
-        document.querySelector('.footer').style.display = 'none';
+ // Function to check if the device is mobile or tablet
+function isMobileOrTablet() {
+    return window.matchMedia('(max-width: 1024px)').matches;
+}
+
+
+    // Check if the device is mobile or tablet
+    if (isMobileOrTablet()) {
+        const footer = document.querySelector('.footer');
+        
+        // Ensure the footer element exists
+        if (footer) {
+            document.addEventListener('focusin', (event) => {
+                if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
+                    footer.style.display = 'none';
+                }
+            });
+
+            document.addEventListener('focusout', () => {
+                footer.style.display = 'block';
+            });
+        } else {
+            console.warn('Footer element not found.');
+        }
     }
 });
 
-document.addEventListener('focusout', () => {
-    document.querySelector('.footer').style.display = 'block';
-});
 
 
