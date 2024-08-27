@@ -7,11 +7,7 @@
     border: none;
     
 }
-.search-container input[type="text"] {
-   
-    border-color: #555;
-    color: #e0e0e0;
-}
+
 
 
 
@@ -69,19 +65,20 @@
     background-color: #555;
 }
 
-.details-container {
-    background-color: #121212;
-}
 
-/* Add more dark mode styles as needed */
-/* General button styles */
 
 
 /* Dark Mode Styles */
-.dark-mode button {
-    background-color: #333; /* Dark background for dark mode */
-    color: #fff; /* Light text for dark mode */
-    border: 2px solid #fff; /* Darker border for dark mode */
+body.dark-mode .slider {
+     background-color: #333; 
+}
+
+body.dark-mode .sun-icon {
+    color: #e0e0e0;
+}
+
+body.dark-mode .moon-icon {
+    color: #f39c12;
 }
 
 /* Search button specific styles */

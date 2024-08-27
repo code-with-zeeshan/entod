@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
     const galleryTitle = document.getElementById('gallery-title');
     const medicineGallery = document.getElementById('medicine-gallery');
-    const detailsContainer = document.getElementById('details-container');
-    const backButton = document.querySelector('.back-button');
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.querySelector('.search-container button');
-    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeToggle = document.getElementById('checkbox');
     const glotekImage = document.getElementById('glotekImage');
+    const darkModeStylesheet = 'style-dark.css';
+    const darkModeImageSrc = 'Images/my-image.png'; // Path to the dark mode image
+    const lightModeImageSrc = 'Images/1723848402944-removebg-preview.png'; // Path to the light mode image
     let currentCategory = '';
     let ignoreBlur = false;
     
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     searchButton.addEventListener('click', toggleSearchBar);
-    searchButton.addEventListener('touchstart', toggleSearchBar);
+    
 
     searchInput.addEventListener('focus', function () {
         ignoreBlur = true;
@@ -43,16 +44,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.addEventListener('touchstart', function (event) {
-        if (!searchInput.contains(event.target) && !searchButton.contains(event.target)) {
-            searchInput.classList.remove('active');
-        }
-    });
+    
 
    // Dark mode toggle
-   const darkModeStylesheet = 'style-dark.css';
-   const darkModeImageSrc = 'Images/my-image.png'; // Path to the dark mode image
-   const lightModeImageSrc = 'Images/1723848402944-removebg-preview.png'; // Path to the light mode image
+   
 
    function toggleDarkMode() {
     const isDarkMode = document.body.classList.toggle('dark-mode');
@@ -89,6 +84,7 @@ function unloadCSS() {
     document.body.classList.add('dark-mode');
     loadCSS(darkModeStylesheet);
     glotekImage.src = darkModeImageSrc;
+    darkModeToggle.checked = true; // Ensure the toggle reflects the saved state
 }
 
 // Toggle dark mode on click or touch
@@ -97,8 +93,30 @@ function toggleDarkModeHandler() {
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
 }
 
-darkModeToggle.addEventListener('click', toggleDarkModeHandler);
-darkModeToggle.addEventListener('touchstart', toggleDarkModeHandler);
+darkModeToggle.addEventListener('change', toggleDarkModeHandler);
+
+// New code for theme switch
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+    }
+}
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
 
 
 // Shrink gallery title on scroll
@@ -221,14 +239,7 @@ document.querySelectorAll('.sidebar li').forEach(li => {
 });
 
 
-   // Back button to return to main content
-   function backToGallery() {
-    detailsContainer.classList.remove('visible');
-    document.querySelector('.content').style.display = 'flex';
-}
-
-backButton.addEventListener('click', backToGallery);
-backButton.addEventListener('touchstart', backToGallery);
+   
 
 
     

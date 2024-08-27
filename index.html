@@ -11,6 +11,7 @@
     <link rel="android-chrome-192x192" sizes="192x192" href="/icons/android-chrome-192x192.png">
     <link rel="android-chrome-512x512" sizes="512x512" href="/icons/android-chrome-512x512.png">
     <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="media-queries.css">
 </head>
@@ -18,7 +19,17 @@
     <div class="page-wrapper">
     <div class="container">
         <!-- Dark mode toggle button -->
-        <button id="darkModeToggle">🌙</button>
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider round">
+                    <i class="fa-solid fa-sun sun-icon"></i>
+                    <i class="fa-solid fa-moon moon-icon"></i>
+                </div> 
+                
+                </label>
+        </div>
+        
             
             <div class="header-image">
                 <img id="glotekImage" src="Images/1723848402944-removebg-preview.png" alt="Glotek">
@@ -51,14 +62,7 @@
         </div>
     </div>
 
-    <div id="details-container" class="details-container hidden">
-        <button class="back-button">← Back</button>
-        <h1 id="medicine-name">Medicine Name</h1>
-        <div class="details">
-            <img id="medicine-image" src="https://via.placeholder.com/200" alt="Medicine Image">
-           
-        </div>
-    </div>
+   
 </div>
     <!-- Footer Section -->
     <footer class="footer">
