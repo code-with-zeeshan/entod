@@ -30,29 +30,35 @@ body, html {
     object-fit: contain; /* Ensure the image fits within the container */
     background-color: black; /* Set background color to black to fill any empty space */
     filter: brightness(0.8);
-    transition: transform 0.3s ease, filter 0.3s ease-in-out; /* Transition for zoom and brightness change */
-    transform-origin: center center; /* Set initial transform origin */
+    transition: filter 0.5s ease-in-out; /* Transition for brightness change */
 }
 
 .fullscreen-image:fullscreen {
     filter: brightness(1); /* Brighten image in fullscreen mode */
 }
 
-/* Cursor style for zooming */
-.fullscreen-image {
-    cursor: zoom-in;
+/* Back Button Style */
+#backButton {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: none; /* Hide initially */
 }
 
-.fullscreen-image.zoomed {
-    cursor: zoom-out;
+.fullscreen-active #backButton {
+    display: block; /* Show the button in fullscreen mode */
+    animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
 }
 
 /* Fade-in animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
