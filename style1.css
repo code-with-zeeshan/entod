@@ -1,14 +1,17 @@
+/* General reset and box-sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Ensure the body and HTML take up the full height */
 body, html {
     height: 100%;
     overflow: hidden;
 }
 
+/* Overlay style, covering the full viewport */
 .overlay {
     position: relative;
     width: 100vw;  /* Full viewport width */
@@ -17,18 +20,24 @@ body, html {
     justify-content: center;
     align-items: center;
     background-color: black;
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 1s ease-in-out; /* Fade in animation */
 }
 
+/* Image style, ensuring it fits within the viewport without cropping */
 .fullscreen-image {
     width: 100vw;  /* Full width of the viewport */
     height: 100vh; /* Full height of the viewport */
-    object-fit: contain; /* Ensure the image fits within the container without cropping */
+    object-fit: contain; /* Ensure the image fits within the container */
     background-color: black; /* Set background color to black to fill any empty space */
     filter: brightness(0.8);
+    transition: filter 0.5s ease-in-out; /* Transition for brightness change */
 }
 
+.fullscreen-image:fullscreen {
+    filter: brightness(1); /* Brighten image in fullscreen mode */
+}
 
+/* Back button styling */
 .back-button {
     position: absolute;
     top: 20px;
@@ -39,8 +48,10 @@ body, html {
     border-radius: 5px;
     cursor: pointer;
     z-index: 1;
-    animation: slideInLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Updated animation with bounce effect */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform transition for hover effect */
+    animation: slideInLeft 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Slide in with bounce effect */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards; /* Animation for fade-in and slide up */
 }
 
 .back-button:hover {
@@ -48,6 +59,17 @@ body, html {
     transform: scale(1.1); /* Scale up slightly on hover */
 }
 
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .back-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Fade-in animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -57,6 +79,7 @@ body, html {
     }
 }
 
+/* Slide-in animation from the left with bounce effect */
 @keyframes slideInLeft {
     from {
         transform: translateX(-100%);
@@ -65,12 +88,25 @@ body, html {
         transform: translateX(0);
     }
 }
-@media (max-width: 768px) {
-    .back-button {
-        top: 10px;
-        left: 10px;
-        padding: 8px 16px;
-        font-size: 14px;
+
+/* New animation: Fade-in and slide up for the back button */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
     }
-    
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade-out animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
